@@ -1,0 +1,2 @@
+Create a follow / unfollow button in the user profile after portfolio button in the same line
+use css flex to show both buttons in one lines
