@@ -1,3 +1,6 @@
 1. add created_at date time to the post.
 2. add a new badge to the left side of the button in posts which should show the time when the post was added.
 3. the date time format should be: 31/12/2025 03:30 PM
+4. add a new button the post called "Delete" & delete functionality.
+5. what method of javascript array is used to remove an item from array
+6. what method of javascript array is used to add an item in the start of array.
