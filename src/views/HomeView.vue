@@ -19,6 +19,8 @@ export default {
           'A full stack web developer, specialized in laravel. I have 5+ years of experience.',
       },
       posts: [],
+      isfollowing:false,
+
     }
   },
   methods: {
@@ -41,6 +43,10 @@ export default {
       // step 3
       this.togglePostForm()
     },
+
+    follow (){
+this.isfollowing = ! this.isfollowing
+    },
   },
 }
 </script>
@@ -51,14 +57,22 @@ export default {
       <div class="col">
         <div class="card">
           <div class="card-header">User Profile</div>
-          <div class="card-body">
+          <div class="card-body ">
             <h5 class="card-title">
               {{ user.name }}
             </h5>
             <p class="card-text">
               {{ user.description }}
             </p>
-            <a href="#" class="btn btn-primary">Portfolio</a>
+            <div class="d-flex gap-3">
+              <a href="#" class="btn btn-primary ">Portfolio</a>
+              <a href="#" class="btn btn-primary " @click="follow">
+           {{ isfollowing ? 'unfollow' : 'follow' }}
+              </a>
+              
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -79,23 +93,13 @@ export default {
             <form @submit.prevent="addPost">
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input
-                  type="text"
-                  v-model="newPost.title"
-                  class="form-control"
-                  id="title"
-                  placeholder="e.g. Post of the day"
-                />
+                <input type="text" v-model="newPost.title" class="form-control" id="title"
+                  placeholder="e.g. Post of the day" />
               </div>
               <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <textarea
-                  v-model="newPost.content"
-                  placeholder="What is on your mind?"
-                  class="form-control"
-                  id="content"
-                  rows="3"
-                ></textarea>
+                <textarea v-model="newPost.content" placeholder="What is on your mind?" class="form-control"
+                  id="content" rows="3"></textarea>
               </div>
               <div class="mb-3">
                 <button type="submit" class="btn btn-success">Save</button>
