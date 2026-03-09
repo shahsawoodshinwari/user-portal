@@ -1,51 +1,24 @@
 <script>
-import PostCard from '../components/post-card.vue'
+import RecentPosts from '../components/User/RecentPosts.vue'
 
 export default {
   components: {
-    PostCard,
+    RecentPosts,
   },
   data() {
     return {
-      newPost: {
-        title: '',
-        content: '',
-      },
-      postFormVisible: false,
       user: {
         id: 1,
         name: 'Shah Sawood Shinwari',
         description:
           'A full stack web developer, specialized in laravel. I have 5+ years of experience.',
       },
-      posts: [],
-      isFollowing:false,
-
+      isFollowing: false,
     }
   },
   methods: {
-    togglePostForm() {
-      this.postFormVisible = !this.postFormVisible
-    },
-    addPost() {
-      // step 1
-      this.posts.push({
-        id: this.posts.length + 1,
-        title: this.newPost.title,
-        image: 'https://placehold.co/600x400',
-        content: this.newPost.content,
-      })
-
-      // step 2
-      this.newPost.title = ''
-      this.newPost.content = ''
-
-      // step 3
-      this.togglePostForm()
-    },
-
-    follow (){
-this.isfollowing = ! this.isfollowing
+    follow() {
+      this.isFollowing = !this.isFollowing
     },
   },
 }
@@ -57,7 +30,7 @@ this.isfollowing = ! this.isfollowing
       <div class="col">
         <div class="card">
           <div class="card-header">User Profile</div>
-          <div class="card-body ">
+          <div class="card-body">
             <h5 class="card-title">
               {{ user.name }}
             </h5>
@@ -65,59 +38,21 @@ this.isfollowing = ! this.isfollowing
               {{ user.description }}
             </p>
             <div class="d-flex gap-3">
-              <a href="#" class="btn btn-primary ">Portfolio</a>
-              <button  class="btn btn-info text-capitalize " @click="follow">
-           {{ isfollowing ? 'unfollow' : 'follow' }}
+              <a href="#" class="btn btn-primary">Portfolio</a>
+              <button
+                :class="['btn', 'text-capitalize', isFollowing ? 'btn-danger' : 'btn-info']"
+                @click="follow"
+              >
+                {{ isFollowing ? 'unfollow' : 'follow' }}
               </button>
-              
             </div>
           </div>
         </div>
       </div>
       <div class="col"></div>
     </div>
-    <div class="row g-3">
-      <div class="col-12 d-flex justify-content-between">
-        <h2>Recent Posts</h2>
-        <button class="btn btn-primary" @click="togglePostForm">
-          <template v-if="!postFormVisible">+ New Post</template>
-          <template v-else>Hide Form</template>
-        </button>
-      </div>
 
-      <div class="col-12" v-if="postFormVisible">
-        <div class="card">
-          <div class="card-body">
-            <form @submit.prevent="addPost">
-              <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" v-model="newPost.title" class="form-control" id="title"
-                  placeholder="e.g. Post of the day" />
-              </div>
-              <div class="mb-3">
-                <label for="content" class="form-label">Content</label>
-                <textarea v-model="newPost.content" placeholder="What is on your mind?" class="form-control"
-                  id="content" rows="3"></textarea>
-              </div>
-              <div class="mb-3">
-                <button type="submit" class="btn btn-success">Save</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <template v-if="posts.length > 0">
-        <div class="col-md-6 col-lg-4" v-for="post in posts">
-          <PostCard :post="post" />
-        </div>
-      </template>
-      <template v-else>
-        <div class="col-12">
-          <div class="alert alert-info" role="alert">No posts found. Please create a new post.</div>
-        </div>
-      </template>
-    </div>
+    <RecentPosts />
   </main>
 </template>
 
