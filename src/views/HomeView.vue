@@ -66,9 +66,9 @@ this.isfollowing = ! this.isfollowing
             </p>
             <div class="d-flex gap-3">
               <a href="#" class="btn btn-primary ">Portfolio</a>
-              <a href="#" class="btn btn-primary " @click="follow">
+              <button  class="btn btn-primary " @click="follow">
            {{ isfollowing ? 'unfollow' : 'follow' }}
-              </a>
+              </button>
               
             </div>
 
