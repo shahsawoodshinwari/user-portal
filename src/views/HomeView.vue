@@ -19,7 +19,7 @@ export default {
           'A full stack web developer, specialized in laravel. I have 5+ years of experience.',
       },
       posts: [],
-      isfollowing:false,
+      isFollowing:false,
 
     }
   },
@@ -66,13 +66,11 @@ this.isfollowing = ! this.isfollowing
             </p>
             <div class="d-flex gap-3">
               <a href="#" class="btn btn-primary ">Portfolio</a>
-              <button  class="btn btn-primary " @click="follow">
+              <button  class="btn btn-info text-capitalize " @click="follow">
            {{ isfollowing ? 'unfollow' : 'follow' }}
               </button>
               
             </div>
-
-
           </div>
         </div>
       </div>
