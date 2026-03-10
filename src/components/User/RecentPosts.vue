@@ -5,6 +5,7 @@ import NoDataFound from '../../assets/img/no-data-found.webp'
 export default {
   components: {
     PostCard,
+
   },
   data() {
     return {
@@ -12,6 +13,7 @@ export default {
       newPost: {
         title: '',
         content: '',
+
       },
       postFormVisible: false,
       posts: [],
@@ -28,6 +30,11 @@ export default {
         title: this.newPost.title,
         image: 'https://placehold.co/600x400',
         content: this.newPost.content,
+        date: new Date().toLocaleString()
+
+
+
+         
       })
 
       // step 2
@@ -37,6 +44,7 @@ export default {
       // step 3
       this.togglePostForm()
     },
+    
   },
 }
 </script>
@@ -57,23 +65,13 @@ export default {
           <form @submit.prevent="addPost">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input
-                type="text"
-                v-model="newPost.title"
-                class="form-control"
-                id="title"
-                placeholder="e.g. Post of the day"
-              />
+              <input type="text" v-model="newPost.title" class="form-control" id="title"
+                placeholder="e.g. Post of the day" />
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea
-                v-model="newPost.content"
-                placeholder="What is on your mind?"
-                class="form-control"
-                id="content"
-                rows="3"
-              ></textarea>
+              <textarea v-model="newPost.content" placeholder="What is on your mind?" class="form-control" id="content"
+                rows="3"></textarea>
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-success">Save</button>
@@ -84,12 +82,7 @@ export default {
     </div>
 
     <template v-if="posts.length > 0">
-      <div
-        class="col-md-6 col-lg-4"
-        :key="`recent-post-${index}`"
-        v-for="(post, index) in posts"
-        :data-index="index"
-      >
+      <div class="col-md-6 col-lg-4" :key="`recent-post-${index}`" v-for="(post, index) in posts" :data-index="index">
         <PostCard :post="post" />
       </div>
     </template>

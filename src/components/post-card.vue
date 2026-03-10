@@ -17,9 +17,11 @@ export default {
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text text-truncate" v-html="post.content"></p>
       </div>
-      <div class="ms-auto">
-        <a href="#" class="btn btn-sm btn-warning">Go somewhere</a>
+      <div class="d-flex justify-content-between align-items-center">
+      <span class="badge bg-secondary">{{ post.date  }}</span>
+        <button class="btn btn-sm btn-danger" @click=""> Delete</button>
       </div>
+      
     </div>
   </div>
 </template>
