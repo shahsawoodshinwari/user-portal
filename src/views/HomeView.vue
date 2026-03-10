@@ -1,5 +1,5 @@
 <script>
-import RecentPosts from '../components/User/RecentPosts.vue'
+import RecentPosts from '@/components/User/RecentPosts.vue'
 
 export default {
   components: {

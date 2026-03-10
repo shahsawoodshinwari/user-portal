@@ -1,6 +1,6 @@
 <script>
-import PostCard from '../post-card.vue'
-import NoDataFound from '../../assets/img/no-data-found.webp'
+import PostCard from '@/components/post-card.vue'
+import NoDataFound from '@/assets/img/no-data-found.webp'
 
 export default {
   components: {
@@ -34,7 +34,7 @@ export default {
 
 
 
-         
+
       })
 
       // step 2
@@ -44,7 +44,7 @@ export default {
       // step 3
       this.togglePostForm()
     },
-    
+
   },
 }
 </script>

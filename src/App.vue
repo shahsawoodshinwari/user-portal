@@ -5,7 +5,7 @@ import { RouterView } from 'vue-router'
 <template>
   <nav class="navbar navbar-expand-lg bg-primary navbar-dark stick-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <RouterLink class="navbar-brand" :to="{ name: 'home' }">User Portal</RouterLink>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,10 +20,14 @@ import { RouterView } from 'vue-router'
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link activeClass="active" class="nav-link" :to="{ name: 'home' }"
+              >Home</router-link
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <router-link activeClass="active" class="nav-link" :to="{ name: 'auth.register' }"
+              >Register</router-link
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Pricing</a>
