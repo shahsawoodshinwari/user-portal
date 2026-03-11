@@ -5,15 +5,13 @@ import NoDataFound from '@/assets/img/no-data-found.webp'
 export default {
   components: {
     PostCard,
-
   },
   data() {
     return {
       noDataFound: NoDataFound,
       newPost: {
-        title: '',
-        content: '',
-
+      title: '',
+      content: '',
       },
       postFormVisible: false,
       posts: [],
@@ -24,25 +22,20 @@ export default {
       this.postFormVisible = !this.postFormVisible
     },
     addPost() {
-      // step 1
       this.posts.push({
         id: this.posts.length + 1,
         title: this.newPost.title,
         image: 'https://placehold.co/600x400',
         content: this.newPost.content,
         date: new Date().toLocaleString()
-
-
-
-
       })
-
-      // step 2
       this.newPost.title = ''
       this.newPost.content = ''
-
-      // step 3
       this.togglePostForm()
+    },
+
+    deletePost(index) {
+      this.posts.splice(index, 1)
     },
 
   },
@@ -82,10 +75,12 @@ export default {
     </div>
 
     <template v-if="posts.length > 0">
-      <div class="col-md-6 col-lg-4" :key="`recent-post-${index}`" v-for="(post, index) in posts" :data-index="index">
+      <div class="col-md-6 col-lg-4" v-for="(post, index) in posts" :key="post.id">
+        <button class="btn btn-danger btn-sm "  @click="deletePost(index)">Delete </button>
         <PostCard :post="post" />
       </div>
     </template>
+
     <template v-else>
       <div class="col-12 text-center">
         <img :src="noDataFound" class="img-thumbnail w-25" alt="No post found." />

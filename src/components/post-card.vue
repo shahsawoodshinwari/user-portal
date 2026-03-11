@@ -1,12 +1,11 @@
 <script>
 export default {
   props: {
-    post: {
-      type: Object,
-      required: true,
-    }
+    post: { type: Object, required: true },
+    index: { type: Number, required: true },
   },
-};
+
+}
 </script>
 
 <template>
@@ -18,10 +17,9 @@ export default {
         <p class="card-text text-truncate" v-html="post.content"></p>
       </div>
       <div class="d-flex justify-content-between align-items-center">
-      <span class="badge bg-secondary">{{ post.date  }}</span>
-        <button class="btn btn-sm btn-danger" @click=""> Delete</button>
+        <span class="badge bg-secondary">{{ post.date }}</span>
+      <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
       </div>
-      
     </div>
   </div>
 </template>
