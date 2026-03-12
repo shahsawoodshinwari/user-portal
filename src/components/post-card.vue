@@ -2,10 +2,10 @@
 export default {
   props: {
     post: {
-       type: Object, 
-       required: true 
-      },
-    }
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>
 
@@ -19,7 +19,18 @@ export default {
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <span class="badge bg-secondary">{{ post.createdAt }}</span>
-      <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
+        <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
+      </div>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          v-model="post.published"
+          type="checkbox"
+          value=""
+          id="publish"
+          switch
+        />
+        <label class="form-check-label" for="publish"> Publish </label>
       </div>
     </div>
   </div>
