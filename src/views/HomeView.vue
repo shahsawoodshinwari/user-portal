@@ -25,7 +25,7 @@ export default {
 </script>
 
 <template>
-  <div class="row row-cols-md-1 row-cols-lg-2 g-3 mb-5">
+  <div class="row row-cols-1 row-cols-lg-2 g-3 mb-5">
     <div class="col">
       <div class="card">
         <div class="card-header">User Profile</div>
