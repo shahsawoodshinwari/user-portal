@@ -9,6 +9,7 @@ export default {
         { label: 'Home', route: 'home' },
         { label: 'Register', route: 'auth.register' },
         { label: 'FAQs', route: 'faqs' },
+        { label: 'Products', route: 'products.index' },
       ],
     }
   },
@@ -44,5 +45,7 @@ export default {
     </div>
   </nav>
 
-  <RouterView />
+  <main class="container py-3">
+    <RouterView />
+  </main>
 </template>

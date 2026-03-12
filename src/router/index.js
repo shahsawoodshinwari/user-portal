@@ -1,5 +1,7 @@
 import FAQs from '@/views/FAQs.vue'
 import HomeView from '@/views/HomeView.vue'
+import ProductList from '@/views/Products/ProductList.vue'
+import ProductShow from '@/views/Products/ProductShow.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import UserRegistration from '@/views/Auth/UserRegistration.vue'
 
@@ -26,6 +28,16 @@ const router = createRouter({
       path: '/public/faqs',
       name: 'faqs',
       component: FAQs,
+    },
+    {
+      path: '/products',
+      name: 'products.index',
+      component: ProductList,
+    },
+    {
+      path: '/products/:id',
+      name: 'products.show',
+      component: ProductShow,
     },
   ],
 })
