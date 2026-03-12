@@ -1,5 +1,6 @@
 <script>
 import { RouterView } from 'vue-router'
+import router from './router';
 </script>
 
 <template>
@@ -30,7 +31,7 @@ import { RouterView } from 'vue-router'
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <router-link class="nav-link" href="#">Pricing</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>

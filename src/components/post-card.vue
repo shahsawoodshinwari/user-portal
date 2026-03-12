@@ -1,10 +1,11 @@
 <script>
 export default {
   props: {
-    post: { type: Object, required: true },
-    index: { type: Number, required: true },
-  },
-
+    post: {
+       type: Object, 
+       required: true 
+      },
+    }
 }
 </script>
 
@@ -17,7 +18,7 @@ export default {
         <p class="card-text text-truncate" v-html="post.content"></p>
       </div>
       <div class="d-flex justify-content-between align-items-center">
-        <span class="badge bg-secondary">{{ post.date }}</span>
+        <span class="badge bg-secondary">{{ post.createdAt }}</span>
       <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
       </div>
     </div>
