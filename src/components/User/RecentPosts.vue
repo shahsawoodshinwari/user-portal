@@ -22,12 +22,12 @@ export default {
       this.postFormVisible = !this.postFormVisible
     },
     addPost() {
-      this.posts.push({
+      this.posts.unshift({
         id: this.posts.length + 1,
         title: this.newPost.title,
         image: 'https://placehold.co/600x400',
         content: this.newPost.content,
-        date: new Date().toLocaleString()
+        createdAt: new Date().toLocaleString()
       })
       this.newPost.title = ''
       this.newPost.content = ''

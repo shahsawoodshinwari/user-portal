@@ -39,10 +39,7 @@ export default {
             </p>
             <div class="d-flex gap-3">
               <a href="#" class="btn btn-primary">Portfolio</a>
-              <button
-                :class="['btn', 'text-capitalize', isFollowing ? 'btn-danger' : 'btn-info']"
-                @click="follow"
-              >
+              <button :class="['btn', 'text-capitalize', isFollowing ? 'btn-danger' : 'btn-info']" @click="follow">
                 {{ isFollowing ? 'unfollow' : 'follow' }}
               </button>
             </div>
