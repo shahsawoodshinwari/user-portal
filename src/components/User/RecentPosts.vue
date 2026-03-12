@@ -10,12 +10,25 @@ export default {
     return {
       noDataFound: NoDataFound,
       newPost: {
-      title: '',
-      content: '',
+        title: '',
+        content: '',
       },
       postFormVisible: false,
       posts: [],
     }
+  },
+  computed: {
+    // publishedPosts() {
+    //   return this.posts.filter((post) => post.published).length
+    // },
+  },
+  watch: {
+    postFormVisible(newValue, oldValue) {
+      console.table({
+        old: oldValue,
+        new: newValue,
+      })
+    },
   },
   methods: {
     togglePostForm() {
@@ -27,7 +40,8 @@ export default {
         title: this.newPost.title,
         image: 'https://placehold.co/600x400',
         content: this.newPost.content,
-        createdAt: new Date().toLocaleString()
+        createdAt: new Date().toLocaleString(),
+        published: false,
       })
       this.newPost.title = ''
       this.newPost.content = ''
@@ -37,7 +51,9 @@ export default {
     deletePost(index) {
       this.posts.splice(index, 1)
     },
-
+    publishedPosts() {
+      return this.posts.filter((post) => post.published).length
+    },
   },
 }
 </script>
@@ -46,10 +62,13 @@ export default {
   <div class="row g-3">
     <div class="col-12 d-flex justify-content-between">
       <h2>Recent Posts</h2>
-      <button class="btn btn-primary" @click="togglePostForm">
-        <template v-if="!postFormVisible">+ New Post</template>
-        <template v-else>Hide Form</template>
-      </button>
+      <div>
+        <span class="me-3">{{ publishedPosts() }} published</span>
+        <button class="btn btn-primary" @click="togglePostForm">
+          <template v-if="!postFormVisible">+ New Post</template>
+          <template v-else>Hide Form</template>
+        </button>
+      </div>
     </div>
 
     <div class="col-12" v-show="postFormVisible">
@@ -58,13 +77,28 @@ export default {
           <form @submit.prevent="addPost">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
+<<<<<<< HEAD
               <input type="text" v-model="newPost.title"  class="form-control" id="title"
                 placeholder="e.g. Post of the day" />
+=======
+              <input
+                type="text"
+                v-model="newPost.title"
+                class="form-control"
+                id="title"
+                placeholder="e.g. Post of the day"
+              />
+>>>>>>> ae7eae797c91fc44867ed704380cb579b5bae279
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea v-model="newPost.content" placeholder="What is on your mind?" class="form-control" id="content"
-                rows="3"></textarea>
+              <textarea
+                v-model="newPost.content"
+                placeholder="What is on your mind?"
+                class="form-control"
+                id="content"
+                rows="3"
+              ></textarea>
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-success">Save</button>
@@ -76,7 +110,7 @@ export default {
 
     <template v-if="posts.length > 0">
       <div class="col-md-6 col-lg-4" v-for="(post, index) in posts" :key="post.id">
-        <button class="btn btn-danger btn-sm "  @click="deletePost(index)">Delete </button>
+        <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button>
         <PostCard :post="post" />
       </div>
     </template>

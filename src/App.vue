@@ -1,6 +1,18 @@
 <script>
 import { RouterView } from 'vue-router'
-import router from './router';
+import router from './router'
+
+export default {
+  data() {
+    return {
+      navItems: [
+        { label: 'Home', route: 'home' },
+        { label: 'Register', route: 'auth.register' },
+        { label: 'FAQs', route: 'faqs' },
+      ],
+    }
+  },
+}
 </script>
 
 <template>
@@ -20,22 +32,13 @@ import router from './router';
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link activeClass="active" class="nav-link" :to="{ name: 'home' }"
-              >Home</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link activeClass="active" class="nav-link" :to="{ name: 'auth.register' }"
-              >Register</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" href="#">Pricing</router-link>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
+          <template v-for="(navItem, index) in navItems">
+            <li class="nav-item">
+              <router-link activeClass="active" class="nav-link" :to="{ name: navItem.route }">
+                {{ navItem.label }}
+              </router-link>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
