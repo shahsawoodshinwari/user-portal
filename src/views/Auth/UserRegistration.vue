@@ -47,20 +47,22 @@ export default {
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+          <label  for="name" class="form-label">Name <span class="text-danger">*</span></label>
           <input v-model.trim.capitalize="form.name"  :style="{ color: form.namecolor }" type="text" :class="['form-control', errors.name ? 'is-invalid' : null]"id="name" placeholder="John Doe"/> 
           <div class="invalid-feedback" v-if="errors.name">
             {{ errors.name }}
           </div>
-         <input v-model=" form.namecolor " type="color" class="form-control form-control-color" id="colorpicker" value="#563d7c" title="Choose your color"></input>
-
+                <div class="d-flex align-items-center gap-2 mt-2"> 
+                  <label for="colorpicker" class="form-label mb-0">Select Text Color</label>
+                   <input v-model="form.namecolor"type="color" class="form-control form-control-color" id="colorpicker" title="Choose your color"/>
+             </div>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
           <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-          <input v-model.trim="form.email" type="email" :class="['form-control', errors.email ? 'is-invalid' : null]"id="email" placeholder="someone@example.com"/>
+          <input v-model.trim="form.email" :style="{ color: form.namecolor }"  type="email" :class="['form-control', errors.email ? 'is-invalid' : null]"id="email" placeholder="someone@example.com"/>
           
           <div class="invalid-feedback" v-if="errors.email">
             {{ errors.email }}

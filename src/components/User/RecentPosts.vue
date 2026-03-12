@@ -58,7 +58,7 @@ export default {
           <form @submit.prevent="addPost">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input type="text" v-model="newPost.title" class="form-control" id="title"
+              <input type="text" v-model="newPost.title"  class="form-control" id="title"
                 placeholder="e.g. Post of the day" />
             </div>
             <div class="mb-3">
