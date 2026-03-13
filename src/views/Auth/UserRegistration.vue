@@ -48,7 +48,7 @@ export default {
       <div class="col-md-6">
         <div class="form-group">
           <label  for="name" class="form-label">Name <span class="text-danger">*</span></label>
-          <input v-model.trim.capitalize="form.name"  :style="{ color: form.namecolor }" type="text" :class="['form-control', errors.name ? 'is-invalid' : null]"id="name" placeholder="John Doe"/> 
+          <input v-model.trim.capitalize="form.name"  :style="{ color: form.namecolor }"  type="text" :class="['form-control', errors.name ? 'is-invalid' : null]"id="name" placeholder="John Doe"/> 
           <div class="invalid-feedback" v-if="errors.name">
             {{ errors.name }}
           </div>
@@ -76,7 +76,7 @@ export default {
           <label for="gender" class="form-label">Gender</label>
           <select v-model="form.gender" class="form-select" id="gender">
             <option value="">Select your gender</option>
-            <option v-for="(gender, index) in genderOptions" :value="gender.value" :key="index">{{ gender.label }}</option>
+            <option v-for="(gender, index) in genderOptions" :value="gender.value" :key="index">{{ gender.label}}</option>
           </select>
         </div>
       </div>

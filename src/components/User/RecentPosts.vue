@@ -77,28 +77,11 @@ export default {
           <form @submit.prevent="addPost">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-<<<<<<< HEAD
-              <input type="text" v-model="newPost.title"  class="form-control" id="title"
-                placeholder="e.g. Post of the day" />
-=======
-              <input
-                type="text"
-                v-model="newPost.title"
-                class="form-control"
-                id="title"
-                placeholder="e.g. Post of the day"
-              />
->>>>>>> ae7eae797c91fc44867ed704380cb579b5bae279
+              <input type="text" v-model="newPost.title"  class="form-control" id="title"placeholder="e.g. Post of the day" />
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea
-                v-model="newPost.content"
-                placeholder="What is on your mind?"
-                class="form-control"
-                id="content"
-                rows="3"
-              ></textarea>
+              <textarea v-model="newPost.content"placeholder="What is on your mind?"class="form-control"id="content" rows="3"></textarea>
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-success">Save</button>
