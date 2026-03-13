@@ -38,10 +38,11 @@ export default {
           {{ money(product.price) }}
         </div>
         <RouterLink
-          :to="{ name: 'products.show', params: { id: product.id } }"
+          :to="{ name: 'products.show', params: { productId: product.id } }"
           class="btn btn-sm btn-primary"
-          >View More</RouterLink
         >
+          View More
+        </RouterLink>
       </div>
     </div>
   </div>

@@ -9,6 +9,8 @@ export default {
     return {
       product: {},
       loading: false,
+      productError: '',
+      quantity: 1,
     }
   },
   computed: {
@@ -26,12 +28,18 @@ export default {
         currency: 'PKR',
       }).format(value)
     },
-    async fetchProducts() {
+    formatDate(date) {
+      return new Date(date).toLocaleString()
+    },
+    async fetchProduct() {
       this.loading = true
       try {
-        const res = await fetch(`https://dummyjson.com/products/${this.$route.params.id}`)
+        const res = await fetch(`https://dummyjson.com/products/${this.$route.params.productId}`)
         this.product = await res.json()
+        this.quantity = this.product.minimumOrderQuantity
       } catch (error) {
+        this.productError = `Something went wrong. Please try again later. We have informed our technical team, they are working on it.
+          Please <a href="https://wa.me/923474938678">contact</a> them if you need any help.`
         console.log(error)
       } finally {
         this.loading = false
@@ -39,12 +47,13 @@ export default {
     },
   },
   mounted() {
-    this.fetchProducts()
+    this.fetchProduct()
   },
 }
 </script>
 
 <template>
+  <div class="alert alert-danger" role="alert" v-if="productError" v-html="productError"></div>
   <div v-if="loading" class="text-center my-5">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
@@ -52,6 +61,7 @@ export default {
   </div>
   <div v-else class="container py-4">
     <div class="row">
+      <!-- left side section -->
       <div class="col-md-6">
         <div
           id="productCarousel"
@@ -89,12 +99,14 @@ export default {
           </button>
         </div>
       </div>
+
+      <!-- right side section -->
       <div class="col-md-6">
         <h2>
-          {{ product.title }} <small class="text-muted">#{{ product.id }}</small>
+          {{ product.title }}
         </h2>
-        <p class="text-muted mb-1">by {{ product.brand }}</p>
-        <div class="mb-2">
+        <p class="text-muted mb-1" v-if="product.brand">by {{ product.brand }}</p>
+        <div class="mb-2 d-flex gap-2">
           <span class="badge bg-secondary text-capitalize">{{ product.category }}</span>
           <span class="badge bg-info text-dark">{{ product.availabilityStatus }}</span>
         </div>
@@ -137,18 +149,43 @@ export default {
         <div class="mb-3">
           <p>{{ product.description }}</p>
         </div>
+
+        <div class="form-group d-flex gap-3 mb-3">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            :min="product.minimumOrderQuantity"
+            placeholder="Enter your desired quantity"
+            class="form-control form-control-sm"
+            id="quantity"
+            v-model="quantity"
+          />
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+          <RouterLink
+            class="btn btn-secondary me-2 flex-grow-1 fw-bold"
+            :to="{ name: 'products.index' }"
+            >Back</RouterLink
+          >
+          <button class="btn btn-warning flex-grow-1 fw-bold">Buy Now</button>
+        </div>
       </div>
     </div>
 
     <hr />
 
     <div class="row">
+      <!-- left side section -->
       <div class="col-md-6">
         <h4>Reviews</h4>
         <ul class="list-group">
           <li class="list-group-item" v-for="(rev, idx) in product.reviews" :key="idx">
             <div class="d-flex justify-content-between">
-              <strong>{{ rev.reviewerName }}</strong>
+              <div>
+                <strong>{{ rev.reviewerName }}</strong>
+                (<small>{{ rev.reviewerEmail }}</small
+                >)
+              </div>
               <small>{{ new Date(rev.date).toLocaleDateString() }}</small>
             </div>
             <star-rating :rating="rev.rating" small />
@@ -156,6 +193,8 @@ export default {
           </li>
         </ul>
       </div>
+
+      <!-- right side section -->
       <div class="col-md-6">
         <h4>Additional Info</h4>
         <ul class="list-group list-group-flush">
@@ -172,10 +211,10 @@ export default {
             <strong>Minimum Order Qty:</strong> {{ product.minimumOrderQuantity }}
           </li>
           <li class="list-group-item" v-if="product.meta">
-            <strong>Created:</strong> {{ new Date(product.meta.createdAt).toLocaleString() }}
+            <strong>Created:</strong> {{ formatDate(product.meta.createdAt) }}
           </li>
           <li class="list-group-item" v-if="product.meta">
-            <strong>Updated:</strong> {{ new Date(product.meta.updatedAt).toLocaleString() }}
+            <strong>Updated:</strong> {{ formatDate(product.meta.updatedAt) }}
           </li>
         </ul>
         <div class="mt-3">

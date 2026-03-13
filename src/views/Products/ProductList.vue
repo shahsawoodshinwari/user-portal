@@ -15,6 +15,7 @@ export default {
   },
   methods: {
     money(value) {
+      //internationaliztion i18n
       return new Intl.NumberFormat('en-PK', {
         style: 'currency',
         currency: 'PKR',
@@ -33,7 +34,11 @@ export default {
     },
   },
   mounted() {
+    console.log('mounted')
     this.fetchProducts()
+  },
+  unmounted() {
+    console.log('unmounted')
   },
 }
 </script>
