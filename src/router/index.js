@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import ProductList from '@/views/Products/ProductList.vue'
 import ProductShow from '@/views/Products/ProductShow.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import CheckoutView from '@/views/Checkout/CheckoutView.vue'
 import UserRegistration from '@/views/Auth/UserRegistration.vue'
 
 const router = createRouter({
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/products/:productId',
       name: 'products.show',
       component: ProductShow,
+    },
+    {
+      path: '/checkout/:productId',
+      name: 'checkout',
+      component: CheckoutView,
     },
   ],
 })

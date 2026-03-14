@@ -14,13 +14,6 @@ export default {
     }
   },
   methods: {
-    money(value) {
-      //internationaliztion i18n
-      return new Intl.NumberFormat('en-PK', {
-        style: 'currency',
-        currency: 'PKR',
-      }).format(value)
-    },
     async fetchProducts() {
       this.loading = true
       try {

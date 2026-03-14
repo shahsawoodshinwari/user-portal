@@ -1,9 +1,16 @@
 <script>
+import ProductAdditionalInfo from '@/components/Product/ProductAdditionalInfo.vue'
+import ProductImages from '@/components/Product/ProductImages.vue'
+import ProductReviews from '@/components/Product/ProductReviews.vue'
 import StarRating from '@/components/Product/StarRating.vue'
+import { money } from '@/utils/money.js'
 
 export default {
   components: {
     StarRating,
+    ProductReviews,
+    ProductAdditionalInfo,
+    ProductImages,
   },
   data() {
     return {
@@ -22,15 +29,7 @@ export default {
     },
   },
   methods: {
-    money(value) {
-      return new Intl.NumberFormat('en-PK', {
-        style: 'currency',
-        currency: 'PKR',
-      }).format(value)
-    },
-    formatDate(date) {
-      return new Date(date).toLocaleString()
-    },
+    money,
     async fetchProduct() {
       this.loading = true
       try {
@@ -62,43 +61,7 @@ export default {
   <div v-else class="container py-4">
     <div class="row">
       <!-- left side section -->
-      <div class="col-md-6">
-        <div
-          id="productCarousel"
-          class="carousel slide"
-          data-bs-ride="carousel"
-          v-if="product.images && product.images.length"
-        >
-          <div class="carousel-inner">
-            <div
-              class="carousel-item"
-              v-for="(img, idx) in product.images"
-              :class="{ active: idx === 0 }"
-              :key="idx"
-            >
-              <img :src="img" class="d-block w-100" :alt="product.title" />
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#productCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#productCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+      <ProductImages :images="product.images" :title="product.title" />
 
       <!-- right side section -->
       <div class="col-md-6">
@@ -167,7 +130,12 @@ export default {
             :to="{ name: 'products.index' }"
             >Back</RouterLink
           >
-          <button class="btn btn-warning flex-grow-1 fw-bold">Buy Now</button>
+          <RouterLink
+            :to="{ name: 'checkout', params: { productId: product.id } }"
+            class="btn btn-warning flex-grow-1 fw-bold"
+          >
+            Buy Now
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -178,45 +146,13 @@ export default {
       <!-- left side section -->
       <div class="col-md-6">
         <h4>Reviews</h4>
-        <ul class="list-group">
-          <li class="list-group-item" v-for="(rev, idx) in product.reviews" :key="idx">
-            <div class="d-flex justify-content-between">
-              <div>
-                <strong>{{ rev.reviewerName }}</strong>
-                (<small>{{ rev.reviewerEmail }}</small
-                >)
-              </div>
-              <small>{{ new Date(rev.date).toLocaleDateString() }}</small>
-            </div>
-            <star-rating :rating="rev.rating" small />
-            <p class="mb-0">{{ rev.comment }}</p>
-          </li>
-        </ul>
+        <ProductReviews :reviews="product.reviews" />
       </div>
 
       <!-- right side section -->
       <div class="col-md-6">
         <h4>Additional Info</h4>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <strong>Warranty:</strong> {{ product.warrantyInformation }}
-          </li>
-          <li class="list-group-item">
-            <strong>Shipping:</strong> {{ product.shippingInformation }}
-          </li>
-          <li class="list-group-item">
-            <strong>Return Policy:</strong> {{ product.returnPolicy }}
-          </li>
-          <li class="list-group-item">
-            <strong>Minimum Order Qty:</strong> {{ product.minimumOrderQuantity }}
-          </li>
-          <li class="list-group-item" v-if="product.meta">
-            <strong>Created:</strong> {{ formatDate(product.meta.createdAt) }}
-          </li>
-          <li class="list-group-item" v-if="product.meta">
-            <strong>Updated:</strong> {{ formatDate(product.meta.updatedAt) }}
-          </li>
-        </ul>
+        <ProductAdditionalInfo :product="product" />
         <div class="mt-3">
           <img
             v-if="product.meta?.qrCode"

@@ -1,4 +1,6 @@
 <script>
+import { money } from '@/utils/money.js'
+
 export default {
   props: {
     product: {
@@ -7,12 +9,7 @@ export default {
     },
   },
   methods: {
-    money(value) {
-      return new Intl.NumberFormat('en-PK', {
-        style: 'currency',
-        currency: 'PKR',
-      }).format(value)
-    },
+    money,
   },
 }
 </script>
@@ -39,7 +36,7 @@ export default {
         </div>
         <RouterLink
           :to="{ name: 'products.show', params: { productId: product.id } }"
-          class="btn btn-sm btn-primary"
+          class="btn btn-sm btn-primary stretched-link"
         >
           View More
         </RouterLink>
