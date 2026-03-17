@@ -14,7 +14,32 @@ export default {
         content: '',
       },
       postFormVisible: false,
-      posts: [],
+      posts: [
+        {
+          id: 1,
+          title: 'Post 1',
+          image: 'https://placehold.co/600x400',
+          content: 'Post 1 content',
+          createdAt: new Date().toLocaleString(),
+          published: false,
+        },
+        {
+          id: 2,
+          title: 'Post 2',
+          image: 'https://placehold.co/600x400',
+          content: 'Post 2 content',
+          createdAt: new Date().toLocaleString(),
+          published: false,
+        },
+        {
+          id: 3,
+          title: 'Post 3',
+          image: 'https://placehold.co/600x400',
+          content: 'Post 3 content',
+          createdAt: new Date().toLocaleString(),
+          published: false,
+        },
+      ],
     }
   },
   computed: {
@@ -77,11 +102,23 @@ export default {
           <form @submit.prevent="addPost">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input type="text" v-model="newPost.title"  class="form-control" id="title"placeholder="e.g. Post of the day" />
+              <input
+                type="text"
+                v-model="newPost.title"
+                class="form-control"
+                id="title"
+                placeholder="e.g. Post of the day"
+              />
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea v-model="newPost.content"placeholder="What is on your mind?"class="form-control"id="content" rows="3"></textarea>
+              <textarea
+                v-model="newPost.content"
+                placeholder="What is on your mind?"
+                class="form-control"
+                id="content"
+                rows="3"
+              ></textarea>
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-success">Save</button>
@@ -93,8 +130,8 @@ export default {
 
     <template v-if="posts.length > 0">
       <div class="col-md-6 col-lg-4" v-for="(post, index) in posts" :key="post.id">
-        <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button>
-        <PostCard :post="post" />
+        <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
+        <PostCard @deletePost="deletePost" :post="post" :index="index" />
       </div>
     </template>
 

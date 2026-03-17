@@ -125,17 +125,15 @@ export default {
           />
         </div>
         <div class="d-flex gap-2 align-items-center">
-          <RouterLink
-            class="btn btn-secondary me-2 flex-grow-1 fw-bold"
-            :to="{ name: 'products.index' }"
-            >Back</RouterLink
-          >
-          <RouterLink
+          <secondary-button class-name=" me-2 flex-grow-1 fw-bold" :to="{ name: 'products.index' }">
+            Back
+          </secondary-button>
+          <warning-button
             :to="{ name: 'checkout', params: { productId: product.id } }"
-            class="btn btn-warning flex-grow-1 fw-bold"
+            class="flex-grow-1 fw-bold"
           >
             Buy Now
-          </RouterLink>
+          </warning-button>
         </div>
       </div>
     </div>
