@@ -14,10 +14,10 @@ export default {
 </script>
 
 <template>
-  <div class="col-md-6">
+  <div class="col-md-6 ">
     <div
       id="productCarousel"
-      class="carousel slide"
+      class="carousel slide carousel-dark "
       data-bs-ride="carousel"
       v-if="images && images.length"
     >
@@ -32,7 +32,7 @@ export default {
         </div>
       </div>
       <button
-        class="carousel-control-prev"
+        class="carousel-control-prev "
         type="button"
         data-bs-target="#productCarousel"
         data-bs-slide="prev"
