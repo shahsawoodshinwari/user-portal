@@ -52,8 +52,7 @@ export default {
               <label for="question" class="form-label">Question</label>
               <textarea
                 id="question"
-                v-model="question"
-                :autofocus="questionAutoFocus"
+                v-model="question":autofocus="questionAutoFocus"
                 placeholder="What's on your mind?"
                 class="form-control"
               ></textarea>
