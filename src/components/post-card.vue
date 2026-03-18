@@ -30,8 +30,13 @@ export default {
       </div>
       <div class="form-check form-switch">
         <input
-          class="form-check-input" v-model="post.published"type="checkbox"value="" @click="$emit('publishPost', index)" id="publish" switch />
-        <label class="form-check-label" for="publish"> Publish </label>
+          class="form-check-input"
+          type="checkbox"
+          @click="$emit('publishPost', index)"
+          :id="`publish-${index}`"
+          switch
+        />
+        <label class="form-check-label" :for="`publish-${index}`"> Publish </label>
       </div>
     </div>
   </div>

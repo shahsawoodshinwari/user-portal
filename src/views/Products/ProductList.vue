@@ -7,6 +7,7 @@ export default {
     ProductCard,
     ProductPlaceholderCard,
   },
+  // state
   data() {
     return {
       products: [],
@@ -26,10 +27,39 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log('mounted')
-    this.fetchProducts()
+  // step 1
+  created() {
+    console.log('created: ' + this.products.length)
   },
+
+  // step 2
+  beforeMount() {
+    console.log('beforeMount: ' + this.products.length)
+  },
+
+  // step 3
+  mounted() {
+    console.log('mounted: ' + this.products.length)
+    this.fetchProducts()
+    console.log('after mounted: ' + this.products.length)
+  },
+
+  // step 4
+  beforeUpdate() {
+    console.log('beforeUpdate')
+  },
+
+  // step 5
+  updated() {
+    console.log('updated')
+  },
+
+  // reverse hook step 1
+  beforeUnmount() {
+    console.log('beforeUnmount')
+  },
+
+  // reverse hook step 2
   unmounted() {
     console.log('unmounted')
   },
