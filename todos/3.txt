@@ -1,0 +1,4 @@
+1. refactor navbar entirely to a vue component.
+2. refactor each nav item to a vue componet.
+3. create publish post functionality using emit/event.
+4. edit post form using emit/event.

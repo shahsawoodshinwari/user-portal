@@ -34,12 +34,13 @@ export default {
         <div class="fw-bold">
           {{ money(product.price) }}
         </div>
-        <RouterLink
+        <primary-button
           :to="{ name: 'products.show', params: { productId: product.id } }"
-          class="btn btn-sm btn-primary stretched-link"
+          size="sm"
+          className="stretched-link"
         >
           View More
-        </RouterLink>
+        </primary-button>
       </div>
     </div>
   </div>

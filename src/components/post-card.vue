@@ -5,7 +5,12 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    },
   },
+  emits: ['deletePost'],
 }
 </script>
 
@@ -19,7 +24,7 @@ export default {
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <span class="badge bg-secondary">{{ post.createdAt }}</span>
-        <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
+        <danger-button size="sm" @click="$emit('deletePost', index)">Delete</danger-button>
       </div>
       <div class="form-check form-switch">
         <input

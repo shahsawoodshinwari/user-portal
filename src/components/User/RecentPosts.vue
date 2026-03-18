@@ -14,7 +14,32 @@ export default {
         content: '',
       },
       postFormVisible: false,
-      posts: [],
+      posts: [
+        {
+          id: 1,
+          title: 'Post 1',
+          image: 'https://placehold.co/600x400',
+          content: 'Post 1 content',
+          createdAt: new Date().toLocaleString(),
+          published: false,
+        },
+        {
+          id: 2,
+          title: 'Post 2',
+          image: 'https://placehold.co/600x400',
+          content: 'Post 2 content',
+          createdAt: new Date().toLocaleString(),
+          published: false,
+        },
+        {
+          id: 3,
+          title: 'Post 3',
+          image: 'https://placehold.co/600x400',
+          content: 'Post 3 content',
+          createdAt: new Date().toLocaleString(),
+          published: false,
+        },
+      ],
     }
   },
   computed: {
@@ -105,8 +130,8 @@ export default {
 
     <template v-if="posts.length > 0">
       <div class="col-md-6 col-lg-4" v-for="(post, index) in posts" :key="post.id">
-        <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button>
-        <PostCard :post="post" />
+        <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
+        <PostCard @deletePost="deletePost" :post="post" :index="index" />
       </div>
     </template>
 
