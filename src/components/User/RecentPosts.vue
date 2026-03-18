@@ -13,6 +13,13 @@ export default {
         title: '',
         content: '',
       },
+       editPostData: {
+        title: '',
+        content: '',
+      },
+      editPostId:null,
+      result:{},
+      editPostFormVisible:false,
       postFormVisible: false,
       posts: [
         {
@@ -79,7 +86,23 @@ export default {
     publishedPosts() {
       return this.posts.filter((post) => post.published).length
     },
-  },
+
+   togglePublish(){
+
+    },
+
+    editPost(id) {
+      // this.$emit('editPos'),
+      this.editPostFormVisible = true
+      this.editPostId=id
+      this.result=this.posts.find(post=> post.id==this.editPostId)
+      this.editPostData.title =this.result.title
+      this.editPostData.content =this.result.content
+    },
+    updatePost(){
+      
+    }
+  }
 }
 </script>
 
@@ -102,23 +125,13 @@ export default {
           <form @submit.prevent="addPost">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input
-                type="text"
-                v-model="newPost.title"
-                class="form-control"
-                id="title"
-                placeholder="e.g. Post of the day"
-              />
+              <input type="text" v-model="newPost.title" class="form-control" id="title"
+                placeholder="e.g. Post of the day" />
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea
-                v-model="newPost.content"
-                placeholder="What is on your mind?"
-                class="form-control"
-                id="content"
-                rows="3"
-              ></textarea>
+              <textarea v-model="newPost.content" placeholder="What is on your mind?" class="form-control" id="content"
+                rows="3"></textarea>
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-success">Save</button>
@@ -128,10 +141,36 @@ export default {
       </div>
     </div>
 
+    <div class="col-12" v-if="editPostFormVisible && editPostId != null">
+      <div class="card">
+        <div class="card-body">
+          <form @submit.prevent="updatePost">
+            <div class="mb-3">
+              <label for="edit-title" class="form-label">Title</label>
+              <input type="text" v-model="editPostData.title" class="form-control" id="edit-title"
+                placeholder="e.g. Post of the day" />
+            </div>
+            <div class="mb-3">
+              <label for="edit-content" class="form-label">Content</label>
+              <textarea v-model="editPostData.content" placeholder="What is on your mind?" class="form-control" id="edit-content"
+                rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-success">update</button>
+              <!-- <button type="submit" class="btn btn-success">Save</button> -->
+
+            </div>
+           
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
     <template v-if="posts.length > 0">
       <div class="col-md-6 col-lg-4" v-for="(post, index) in posts" :key="post.id">
-        <!-- <button class="btn btn-danger btn-sm" @click="deletePost(index)">Delete</button> -->
-        <PostCard @deletePost="deletePost" :post="post" :index="index" />
+        <PostCard @publishPost="togglePublish" @editPost="editPost" @deletePost="deletePost" :post="post" :index="index" />
+
       </div>
     </template>
 

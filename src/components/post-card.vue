@@ -10,7 +10,7 @@ export default {
       required: true,
     },
   },
-  emits: ['deletePost'],
+  emits: ['deletePost', 'editPost', 'publishPost'],
 }
 </script>
 
@@ -24,17 +24,13 @@ export default {
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <span class="badge bg-secondary">{{ post.createdAt }}</span>
+        <primary-button size="sm" @click="$emit('editPost', post.id)">Edit</primary-button>
+
         <danger-button size="sm" @click="$emit('deletePost', index)">Delete</danger-button>
       </div>
       <div class="form-check form-switch">
         <input
-          class="form-check-input"
-          v-model="post.published"
-          type="checkbox"
-          value=""
-          id="publish"
-          switch
-        />
+          class="form-check-input" v-model="post.published"type="checkbox"value="" @click="$emit('publishPost', index)" id="publish" switch />
         <label class="form-check-label" for="publish"> Publish </label>
       </div>
     </div>
